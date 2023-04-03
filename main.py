@@ -1,12 +1,15 @@
-from PyQt5 import uic
-from PyQt5.QtWidgets import QApplication
+from matrix import Matrix
 
-Form, Window = uic.loadUiType("1.ui")
-
-app = QApplication([])
-window = Window()
-form = Form()
-form.setupUi(window)
-window.show()
-app.exec()
-print ("working")
+matrix = Matrix([])
+matrix.read_matrix_from_file('matr2.txt')
+matrix.output()
+print(f'Размер матрицы: {matrix.size}')
+maxmin = matrix.maxmin()
+minmax = matrix.minmax()
+print(f'Максимин: {maxmin}\nМинимакс: {minmax}')
+print("Седловой точки нет") if minmax!=maxmin else print ("Седловая точка есть")
+#matrix.write_matrix_to_file('out.txt')
+strictly =  matrix.strictly_dominated_strategy()
+weakly = matrix.weakly_dominated_strategy()
+print(f"Строго доминируемые для игрока А: {strictly[0]}\nСтрого доминируемые для игрока B: {strictly[1]}")
+print(f"Слабо доминируемые для игрока А: {weakly[0]}\nСлабо доминируемые для игрока B: {weakly[1]}")
