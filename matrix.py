@@ -120,3 +120,24 @@ class Matrix:
             if count == rows:
                 result_for_player_b.append(f"Стратерия b{j+1}")
         return result_for_player_a, result_for_player_b
+    
+    def find_all_pure_nash_eq(self):
+        rows = len(self.matrix)
+        cols = len(self.matrix[0])
+        nash_eqs = []
+        
+        for i in range(rows):
+            for j in range(cols):
+                is_nash_eq = True
+                for k in range(rows):
+                    if self.matrix[k][j] > self.matrix[i][j]:
+                        is_nash_eq = False
+                        break
+                if is_nash_eq:
+                    for l in range(cols):
+                        if self.matrix[i][l] > self.matrix[i][j]:
+                            is_nash_eq = False
+                            break
+                if is_nash_eq:
+                    nash_eqs.append((f'a{i+1}', f'b{j+1}'))        
+        return nash_eqs
