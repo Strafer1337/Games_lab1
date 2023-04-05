@@ -25,9 +25,9 @@ def test_for_solo_matrix():
 def test_for_bimatrix():
     # test_bimatr = [[(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)]]
     bimatrix = BiMatrix([])
-    bimatrix.read_matrix_from_file('prisoners.txt')
+    bimatrix.read_matrix_from_file("./tests/bi1.txt")
     bimatrix.output()
-    print(f'Равновесия Неша: {bimatrix.find_all_pure_nash_eq()}')
+    # print(f'Равновесия Неша: {bimatrix.find_all_pure_nash_eq()}')
 
 def test_read(filename):
     matrix = []
@@ -42,8 +42,6 @@ def test_read(filename):
             matrix[i][j][0] = int(matrix[i][j][0])
             matrix[i][j][1] = int(matrix[i][j][1])
     print(matrix)
-
-
 
 if __name__ == '__main__':
     test_for_bimatrix()

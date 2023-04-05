@@ -5,7 +5,7 @@ class BiMatrix(Matrix):
 
     def read_matrix_from_file(self, filename):
         """
-        Считывает матрицу из файла
+        Считывает биматричную игру из файла
         """
         with open(filename, 'r') as file:
             for line in file:
@@ -17,13 +17,12 @@ class BiMatrix(Matrix):
                 self.matrix[i][j] =  self.matrix[i][j].split(",")
                 self.matrix[i][j][0] = int(self.matrix[i][j][0])
                 self.matrix[i][j][1] = int(self.matrix[i][j][1])
-                # self.matrix[i][j] = list(self.matrix[i][j])
-                # self.matrix[i][j].pop(1)
-                # self.matrix[i][j][0] = int(self.matrix[i][j][0])
-                # self.matrix[i][j][1] = int(self.matrix[i][j][1])
         self.size = (len(self.matrix), len(self.matrix[0]))
 
     def find_all_pure_nash_eq(self):
+        """
+        Нахождение всех равновесий по Нешу
+        """
         rows = len(self.matrix)
         cols = len(self.matrix[0])
         nash_eqs = []
