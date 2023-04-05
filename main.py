@@ -25,9 +25,15 @@ def test_for_solo_matrix():
 def test_for_bimatrix():
     # test_bimatr = [[(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)]]
     bimatrix = BiMatrix([])
-    bimatrix.read_matrix_from_file('prisoners.txt')
-    bimatrix.output()
-    print(f'Равновесия Неша: {bimatrix.find_all_pure_nash_eq()}')
+    bimatrix.read_matrix_from_file('./tests/bi1.txt')
+    bimatrix.outputToConsole()
+    maxmin = bimatrix.maxmin()
+    # bimatrix.write_matrix_to_file('./tests/out.txt')
+    strictly = bimatrix.strictly_dominated_strategy()
+    weakly = bimatrix.weakly_dominated_strategy()
+    print(f'Максимин для Игрока А: {maxmin[0]}\nМаксимин для Игрока B: {maxmin[1]}')
+    print(f"Строго доминируемые для игрока А: {strictly[0]}\nСтрого доминируемые для игрока B: {strictly[1]}")
+    print(f"Слабо доминируемые для игрока А: {weakly[0]}\nСлабо доминируемые для игрока B: {weakly[1]}")
 
 def test_read(filename):
     matrix = []

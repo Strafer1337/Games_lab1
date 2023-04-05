@@ -9,7 +9,7 @@ class Matrix:
     def getSize(self):
         return self.size()
 
-    def output(self):
+    def outputToConsole(self):
         """
         Выводит матрицу
         """
@@ -67,11 +67,17 @@ class Matrix:
         result_for_player_a = []
         result_for_player_b = []
         for i in range(rows):
-            if all(self.matrix[k][j] > self.matrix[i][j] for k in range(rows) if k != i for j in range(cols)):
-                result_for_player_a.append(f"Стратерия a{i+1}")
+            for k in range(rows):
+                if k==i:
+                    continue
+                elif all(self.matrix[k][j] > self.matrix[i][j] for j in range(cols)):
+                    result_for_player_a.append(f"a{i+1}")
         for j in range(cols):
-            if all(self.matrix[i][k] > self.matrix[i][j] for k in range(cols) if k != j for i in range(rows)):
-                result_for_player_b.append(f"Стратерия b{j+1}")
+            for k in range(cols):
+                if k==j:
+                    continue
+                elif all(self.matrix[i][k] > self.matrix[i][j] for i in range(rows)):
+                    result_for_player_b.append(f"b{j+1}")
         return result_for_player_a, result_for_player_b
 
     def weakly_dominated_strategy(self):
@@ -83,13 +89,19 @@ class Matrix:
         result_for_player_a = []
         result_for_player_b = []
         for i in range(rows):
-            if all(self.matrix[k][j] >= self.matrix[i][j] for k in range(rows) if k != i for j in range(cols)) and \
-                    any(self.matrix[k][j] == self.matrix[i][j] for k in range(rows) if k != i for j in range(cols)):
-                result_for_player_a.append(f"Стратерия a{i+1}")
+            for k in range(rows):
+                if k == i:
+                    continue
+                elif all(self.matrix[k][j] >= self.matrix[i][j] for j in range(cols)) and \
+                    any(self.matrix[k][j] == self.matrix[i][j] for j in range(cols)):
+                    result_for_player_a.append(f"a{i+1}")
         for j in range(cols):
-            if all(self.matrix[i][k] >= self.matrix[i][j] for k in range(cols) if k != j for i in range(rows)) and \
-                    any(self.matrix[i][k] == self.matrix[i][j] for k in range(cols) if k != j for i in range(rows)):
-                result_for_player_b.append(f"Стратерия b{j+1}")
+            for k in range(cols):
+                if k==j:
+                    continue
+                elif all(self.matrix[i][k] >= self.matrix[i][j] for i in range(rows)) and \
+                    any(self.matrix[i][k] == self.matrix[i][j] for i in range(rows)):
+                    result_for_player_b.append(f"b{j+1}")
         return result_for_player_a, result_for_player_b
 
     def nlo(self):
