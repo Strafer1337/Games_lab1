@@ -45,3 +45,30 @@ class BiMatrix(Matrix):
                 if is_nash_eq:
                     nash_eqs.append((f'a{i+1}', f'b{j+1}'))        
         return nash_eqs
+    
+    def maxmin(self):
+        """
+        Находит максимин в биматричной игре
+        """
+        def maxminForA(matrix):
+            """Максимин для игрока А"""
+            minByRow = []
+            mins = []
+            for i in range(len(matrix)):
+                for j in range(len(matrix[0])):
+                    minByRow.append(matrix[i][j][0])
+                mins.append(min(minByRow))
+            return max(mins)
+        
+        def maxminForB(matrix):
+            """Максимин для игрока B"""
+            minByCol = []
+            mins = []
+            for j in range(len(matrix[0])):
+                for i in range(len(matrix)):
+                    minByCol.append(matrix[i][j][1])
+                mins.append(min(minByCol))
+            return max(mins) 
+                   
+        return (maxminForA(self.matrix), maxminForB(self.matrix))
+    
