@@ -23,11 +23,26 @@ def test_for_solo_matrix():
     # print(f"Список равновесий по нешу {nash}")
 
 def test_for_bimatrix():
-    # test_bimatr = [[(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)], [(1,1), (2,2), (3,3)]]
+    file = "./tests/prisoners.txt"
+    # test_bimatr = [[(8,8), (0,1), (5,3)], [(3,0), (3,9), (3,3)], [(1,5), (9,6), (6,3)]]
     bimatrix = BiMatrix([])
-    bimatrix.read_matrix_from_file("./tests/bi1.txt")
-    bimatrix.output()
-    # print(f'Равновесия Неша: {bimatrix.find_all_pure_nash_eq()}')
+    bimatrix.read_matrix_from_file(file)
+    bimatrix.outputToConsole()
+    print(f'Размер матрицы: {bimatrix.getSize()}') if bimatrix.getSize() else print('Ошибка! Пустая матрица')
+    if bimatrix.getSize():
+        maxmin = bimatrix.maxmin()
+        # bimatrix.write_matrix_to_file('./tests/out.txt')
+        strictly = bimatrix.strictly_dominated_strategy()
+        weakly = bimatrix.weakly_dominated_strategy()
+        nlo = bimatrix.nlo()
+        nash = bimatrix.find_all_pure_nash_eq()
+        print(f'Файл с матрицей: \'{file}\'') 
+        print(f'Максимин для Игрока А: {maxmin[0]}\nМаксимин для Игрока B: {maxmin[1]}')
+        print(f"Строго доминируемые для игрока А: {strictly[0]}\nСтрого доминируемые для игрока B: {strictly[1]}")
+        print(f"Слабо доминируемые для игрока А: {weakly[0]}\nСлабо доминируемые для игрока B: {weakly[1]}")
+        print(f"НЛО для игрока А: {nlo[0]}\nНЛО для игрока B: {nlo[1]}")
+        print(f'Все равновесия по Нешу: {nash}')
+        
 
 def test_read(filename):
     matrix = []
