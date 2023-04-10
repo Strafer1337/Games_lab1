@@ -24,5 +24,4 @@ if __name__ == '__main__':
                 sys.exit
             else:
                 actions_for_bimatrix(bimatrix)
-    # test_for_solo_matrix()
 

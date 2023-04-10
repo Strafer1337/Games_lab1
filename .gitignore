@@ -10329,3 +10329,4 @@ tests/prisoners1.txt
 output/main.exe
 bi2.txt
 LR1.zip1
+__pycache__/menu.cpython-311.pyc

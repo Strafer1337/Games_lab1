@@ -42,7 +42,7 @@ def menu_for_matrix():
                 matrix.outputToConsole()
                 return matrix 
             case 2:
-                filename = input("\nВведите имя файла с матрицей: ") + ".txt"
+                filename = str(input("\nВведите имя файла с матрицей: ")) + ".txt"
                 while not os.path.exists(filename):
                     print("\nНеверное имя файла!")
                     filename = input("Введите верное имя файла: ") + ".txt"
@@ -63,7 +63,7 @@ def menu_for_matrix():
                         row.append(randint(low, high))
                     in_matrix.append(row)
                 matrix = Matrix(in_matrix)
-                # print(matrix.matrix)
+                print("\n\tВведенная матрица:")
                 matrix.outputToConsole()
                 return matrix
             case 4:
@@ -114,7 +114,7 @@ def menu_for_bimatrix():
                         row.append([randint(low, high), randint(low, high)])
                     in_matrix.append(row)
                 matrix = BiMatrix(in_matrix)
-                print(matrix.matrix)
+                print("\n\tВведенная матрица:")
                 matrix.outputToConsole()
                 return matrix
             case 4:
@@ -123,8 +123,6 @@ def menu_for_bimatrix():
             case _:
                 print("\n\tНет такой команды!")
 
-
-# TODO проверки на пустые результаты
 def actions_for_matrix(matrix):
     mode = 0
     while mode != 6:
@@ -139,16 +137,24 @@ def actions_for_matrix(matrix):
                 print("Седловой точки нет") if minmax != maxmin else print("Седловая точка есть")
             case 2:
                 strictly = matrix.strictly_dominated_strategy()
-                print(f"Строго доминируемые для игрока А: {strictly[0]}\nСтрого доминируемые для игрока B: {strictly[1]}")
+                print(f"Строго доминируемые для игрока А: {strictly[0]}") if strictly[0] \
+                    else print("Нет строго доминируемых для игрока А")
+                print(f"Строго доминируемые для игрока B: {strictly[1]}") if strictly[1] \
+                    else print("Нет строго доминируемых для игрока B")
             case 3:
                 weakly = matrix.weakly_dominated_strategy()
-                print(f"Слабо доминируемые для игрока А: {weakly[0]}\nСлабо доминируемые для игрока B: {weakly[1]}")
+                print(f"Слабо доминируемые игрока А: {weakly[0]}") if weakly[0]\
+                    else print("Нет слабо доминируемых игрока А")
+                print(f"Слабо доминируемые игрока B: {weakly[1]}") if weakly[1]\
+                    else print("Нет слабо доминируемых игрока B")
             case 4:
                 nlo = matrix.nlo()
-                print(f"НЛО для игрока А: {nlo[0]}\nНЛО для игрока B: {nlo[1]}")
+                print(f"НЛО для игрока А: {nlo[0]}") if nlo[0] else print("Нет НЛО-стратегий игрока А")
+                print(f"НЛО для игрока B: {nlo[1]}") if nlo[1] else print("Нет НЛО-стратегий игрока B")
             case 5:
                 filename = input("\nВведите имя файла для записи: ") + ".txt"
                 matrix.write_matrix_to_file(filename)
+                print(f'Матрица записана в файл {filename}!')
             case 6:
                 print("\n\tЗавершение работы.\n\tДо свидания!")
                 sys.exit
@@ -168,19 +174,27 @@ def actions_for_bimatrix(matrix):
                 print(f'Максимин для Игрока А: {maxmin[0]}\nМаксимин для Игрока B: {maxmin[1]}')
             case 2:
                 strictly = matrix.strictly_dominated_strategy()
-                print(f"Строго доминируемые для игрока А: {strictly[0]}\nСтрого доминируемые для игрока B: {strictly[1]}")
+                print(f"Строго доминируемые для игрока А: {strictly[0]}") if strictly[0] \
+                    else print("Нет строго доминируемых для игрока А")
+                print(f"Строго доминируемые для игрока B: {strictly[1]}") if strictly[1] \
+                    else print("Нет строго доминируемых для игрока B")            
             case 3:
                 weakly = matrix.weakly_dominated_strategy()
-                print(f"Слабо доминируемые для игрока А: {weakly[0]}\nСлабо доминируемые для игрока B: {weakly[1]}")
+                print(f"Слабо доминируемые игрока А: {weakly[0]}") if weakly[0]\
+                    else print("Нет слабо доминируемых игрока А")
+                print(f"Слабо доминируемые игрока B: {weakly[1]}") if weakly[1]\
+                    else print("Нет слабо доминируемых игрока B")
             case 4:
                 nlo = matrix.nlo()
-                print(f"НЛО для игрока А: {nlo[0]}\nНЛО для игрока B: {nlo[1]}")
+                print(f"НЛО для игрока А: {nlo[0]}") if nlo[0] else print("Нет НЛО-стратегий игрока А")
+                print(f"НЛО для игрока B: {nlo[1]}") if nlo[1] else print("Нет НЛО-стратегий игрока B")
             case 5:
                 nash = matrix.find_all_pure_nash_eq()
-                print(f'Все равновесия по Нешу: {nash}')
+                print(f'Все равновесия по Нешу: {nash}') if nash else print("Равновесий по Нешу нет!")
             case 6:
                 filename = input("\nВведите имя файла для записи: ") + ".txt"
                 matrix.write_matrix_to_file(filename)
+                print(f'Матрица записана в файл {filename}!')
             case 7:
                 print("\n\tЗавершение работы.\n\tДо свидания!")
                 sys.exit
