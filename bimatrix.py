@@ -1,6 +1,6 @@
 from matrix import Matrix
 
-class BiMatrix(Matrix):
+class BiMatrix(Matrix): # класс для биматричной игры
     # matrix = []
 
     def read_matrix_from_file(self, filename):

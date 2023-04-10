@@ -1,4 +1,4 @@
-class Matrix:
+class Matrix: # класс для матричной игры
     matrix = []
     size = ()
 
