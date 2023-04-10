@@ -64,7 +64,6 @@ class BiMatrix(Matrix):
             result_for_player_a = []
             result_for_player_b = []
             for i in range(rows):
-                # if_strictly_dominated = False
                 for k in range(rows):
                     if k == i:
                         continue
@@ -96,7 +95,7 @@ class BiMatrix(Matrix):
                     if k == i:
                         continue
                     elif all(self.matrix[k][j][0] >= self.matrix[i][j][0] for j in range(cols)) and \
-                            any(self.matrix[k][j][0] == self.matrix[i][j][0] for j in range(cols)):
+                        any(self.matrix[k][j][0] == self.matrix[i][j][0] for j in range(cols)):
                         result_for_player_a.append(f"a{i+1}")
                         break
             for j in range(cols):
@@ -106,6 +105,7 @@ class BiMatrix(Matrix):
                     elif all(self.matrix[i][k][1] >= self.matrix[i][j][1] for i in range(rows)) and \
                         any(self.matrix[i][k][1] == self.matrix[i][j][1] for i in range(rows)):
                         result_for_player_b.append(f"b{j+1}")
+                        break
             return result_for_player_a, result_for_player_b
     
     def nlo(self):

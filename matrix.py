@@ -87,12 +87,14 @@ class Matrix:
                         continue
                     elif all(self.matrix[k][j] > self.matrix[i][j] for j in range(cols)):
                         result_for_player_a.append(f"a{i+1}")
+                        break
             for j in range(cols):
                 for k in range(cols):
                     if k==j:
                         continue
                     elif all(self.matrix[i][k] > self.matrix[i][j] for i in range(rows)):
                         result_for_player_b.append(f"b{j+1}")
+                        break
             return result_for_player_a, result_for_player_b
 
     def weakly_dominated_strategy(self):
@@ -113,6 +115,7 @@ class Matrix:
                     elif all(self.matrix[k][j] >= self.matrix[i][j] for j in range(cols)) and \
                         any(self.matrix[k][j] == self.matrix[i][j] for j in range(cols)):
                         result_for_player_a.append(f"a{i+1}")
+                        break
             for j in range(cols):
                 for k in range(cols):
                     if k==j:
@@ -120,6 +123,7 @@ class Matrix:
                     elif all(self.matrix[i][k] >= self.matrix[i][j] for i in range(rows)) and \
                         any(self.matrix[i][k] == self.matrix[i][j] for i in range(rows)):
                         result_for_player_b.append(f"b{j+1}")
+                        break
             return result_for_player_a, result_for_player_b
 
     def nlo(self):
