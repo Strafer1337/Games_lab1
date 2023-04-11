@@ -73,6 +73,9 @@ def matrix_gui():
             if nlo[1]: tmp += f"НЛО для игрока B: {nlo[1]}" + '\n'
             else: tmp += "Нет НЛО-стратегий игрока B" + '\n'
             m_window['text'].update(tmp)
+        if event == 'Записать в файл' and matrix.matrix != []:
+            matrix.write_matrix_to_file(values.get('out_path'))
+            gui.popup_ok(f"Матрица записана в файл {values.get('out_path')}")
         if event == "Выход":
             gui.popup_ok("Завершение работы программы\nДо новых встреч!")
             m_window.close()     
@@ -84,7 +87,7 @@ def bimatrix_gui():
     layout = [
         [gui.Stretch(), gui.Text(BIMATRIX_STR, font=("Helvetica", 20)), gui.Stretch()],
         [gui.Text('Выберите файл с матрицей', font=("Helvetica", 16))],
-        [gui.InputText(size = (38,1), key = 'file_path'), gui.Stretch(), gui.FileBrowse('Открыть файл', button_color='SlateGray', size=(10,1))], 
+        [gui.InputText(size = (38,1), key = 'file_path'), gui.FileBrowse('Открыть файл', button_color='SlateGray', size=(11,1))], 
         [gui.Button('Загрузить', button_color='SlateGray', size = (46, 1))],
         [gui.Text('Доступные виды действий: ', font=("Helvetica", 16))],
         [gui.Button('Найти максимин и минимакс', size=(22,1)), gui.Button("Найти строго доминируемые", size=(22,1))], # action buttons
@@ -148,10 +151,13 @@ def bimatrix_gui():
             if nash: tmp += f'Все равновесия по Нешу: {nash}' + '\n'
             else: tmp += "Равновесий по Нешу нет!" + '\n'
             m_window['text'].update(tmp)
+        if event == 'Записать в файл' and bimatrix.matrix != []:
+            bimatrix.write_matrix_to_file(values.get('out_path'))
+            gui.popup_ok(f"Матрица записана в файл {values.get('out_path')}")
         if event == "Выход":
             gui.popup_ok("Завершение работы программы\nДо новых встреч!")
             m_window.close()     
             return None
         
 if __name__ == '__main__':
-    matrix_gui()
+    bimatrix_gui()
