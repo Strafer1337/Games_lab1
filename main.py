@@ -1,5 +1,5 @@
 from mainwindow import *
-from menu import *
+# from menu import *
 
 if __name__ == '__main__':
     mainwindow()
