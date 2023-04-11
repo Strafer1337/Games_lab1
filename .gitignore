@@ -10330,3 +10330,5 @@ output/main.exe
 bi2.txt
 LR1.zip1
 __pycache__/menu.cpython-311.pyc
+gui_example.py
+__pycache__/gui_menu.cpython-311.pyc
