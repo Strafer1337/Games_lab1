@@ -5,8 +5,8 @@ if __name__ == '__main__':
     mainwindow()
     sys.exit
     
-    # # prog_name = Figlet(font='big')
-    # # print(prog_name.renderText('Games LR1'))
+    # prog_name = Figlet(font='big')
+    # print(prog_name.renderText('Games LR1'))
     # mode = menu()
     # match mode:
     #     case 1:
